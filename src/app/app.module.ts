@@ -4,23 +4,23 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Ionic2RatingModule } from 'ionic2-rating';
-
+import { MyApp } from './app.component';
 
 //firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { firebaseConfig } from "../config/firebase.config";
 
-import { MyApp } from './app.component';
-
+//pages
 import { HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage } from '../pages/index.pages';
+
+//services
+import {UploadImageService} from '../providers/index.providers'
 
 //plugins
 import { Camera } from '@ionic-native/camera';
 
-import { UploadImageService } from '../providers/upload-image/upload-image';
 
 
 @NgModule({

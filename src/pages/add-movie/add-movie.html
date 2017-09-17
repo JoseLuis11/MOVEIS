@@ -33,7 +33,7 @@
       <ion-input block [(ngModel)]="duration" class="" type="text" placeholder="Duración"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-textarea block [(ngModel)]="synopsis" class="" style="height: 20vh" type="textarea" placeholder="Sinopsis"></ion-textarea>
+      <ion-textarea id="synopsis" block [(ngModel)]="synopsis" class="" type="textarea" placeholder="Sinopsis"></ion-textarea>
     </ion-item>
     <ion-item text-center>
       <rating [(ngModel)]="rating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
@@ -57,6 +57,6 @@
     </button>
   </ion-fab>
 
-  <img style="max-width:500px" [src]="imagePreview" *ngIf="imagePreview">
+  <img id="image-preview" [src]="imagePreview" *ngIf="imagePreview">
 
 </ion-content>

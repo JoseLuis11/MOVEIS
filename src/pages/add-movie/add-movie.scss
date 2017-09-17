@@ -12,4 +12,12 @@ page-add-movie  {
           }
         }
       }
+
+    #synopsis{
+        height: 20vh;    
+    }
+    
+    #image-preview{
+        max-width: 500px;
+    }
 }

@@ -3,17 +3,17 @@
     <ion-title text-center>
       MOVE IS
     </ion-title>
-    <ion-buttons end> 
+    <ion-buttons end>
       <button large ion-button>
         <ion-icon name="settings"></ion-icon> 
       </button>
-      </ion-buttons>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-searchbar ></ion-searchbar>
-    <!--(ionInput)="getItems($event)"-->
+  <ion-searchbar></ion-searchbar>
+  <!--(ionInput)="getItems($event)"-->
 
   <ion-card *ngFor="let movie of movies | async">
 
@@ -43,22 +43,11 @@
       </ion-col>
       <ion-col text-center>
         <button ion-button large clear>
-                  <ion-icon style="font-size:10" large name="{{collectionIcon}}"></ion-icon>
+                  <ion-icon large name="{{collectionIcon}}"></ion-icon>
               </button>
       </ion-col>
     </ion-row>
-
-
-
   </ion-card>
-
-
-
-
-  <p>
-
-  </p>
-
 
   <ion-fab bottom right>
     <button (click)="openModal()" ion-fab color="primary">

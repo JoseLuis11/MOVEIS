@@ -4,16 +4,13 @@
 
   <ion-list no-lines>
 
-    <ion-item style="width: 97.5%;">
+    <ion-item class="item-width">
       <ion-input [(ngModel)]="email" class=" inputForm " type="email" placeholder="Correo Electrónico"></ion-input>
     </ion-item>
 
-    <ion-item style="width: 97.5%;">
+    <ion-item class="item-width">
       <ion-input [(ngModel)]="pass" class="inputForm" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
-
-
-    
 
     <button [navPush]="homePage" (click)="seeComponents()" text-center text-capitalize block ion-button class="buttonForm"> Iniciar Sesión </button>
 
