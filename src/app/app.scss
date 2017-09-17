@@ -14,3 +14,24 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+img{
+    margin: auto;
+    display: block;
+  }
+
+  
+  .buttonForm{
+    margin: auto;
+    width: 90%;
+    height: 50px;
+}  
+
+   /// @prop - Show the focus highlight when the input has focus
+$text-input-ios-show-focus-highlight:      transparent;
+
+/// @prop - Show the valid highlight when it is valid and has a value
+$text-input-ios-show-valid-highlight:      transparent;
+
+/// @prop - Show the invalid highlight when it is invalid and has value
+$text-input-ios-show-invalid-highlight:    transparent;

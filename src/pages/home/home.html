@@ -1,14 +1,68 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      MOVE IS
     </ion-title>
+    <ion-buttons end> 
+      <button large ion-button>
+        <ion-icon name="settings"></ion-icon> 
+      </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+    <ion-searchbar ></ion-searchbar>
+    <!--(ionInput)="getItems($event)"-->
+
+  <ion-card *ngFor="let movie of movies | async">
+
+    <img id="cover" [src]="movie.imageUrl">
+
+
+    <ion-card-content>
+      <ion-card-title class="margin-bottom" text-center>
+        {{movie.title}}
+      </ion-card-title>
+
+      <h2 text-left class="margin-bottom">Género: {{movie.genre}}</h2>
+      <h2 text-left class="margin-bottom">Duracion: {{movie.duration}}</h2>
+    </ion-card-content>
+    <ion-row align-items-center>
+      <ion-col>
+        <button ion-button icon-left clear small>
+                <ion-icon name="information-circle"></ion-icon>
+                <div>Sinopsis</div>
+              </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>Reseñas</div>
+              </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button large clear>
+                  <ion-icon style="font-size:10" large name="{{collectionIcon}}"></ion-icon>
+              </button>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-card>
+
+
+
+
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+
   </p>
+
+
+  <ion-fab bottom right>
+    <button (click)="openModal()" ion-fab color="primary">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

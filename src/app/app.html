@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>Menú</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content >
+        <img src="assets/img/logo.svg" style="max-width:50%; margin-top:20px">
+        <ion-list style="margin-top:20px">
+            <button ion-item (click)="openPage(loginPage)">
+          Iniciar Sesión
+        </button>
+            <button ion-item (click)="openPage(registerPage)">
+          Crear Cuenta
+        </button>
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

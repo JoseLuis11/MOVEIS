@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start> <button (click)="closeModal()" ion-button>
+                      Cancelar
+                    </button>
+    </ion-buttons>
+    <ion-title>
+      Película
+    </ion-title>
+
+    <ion-buttons end> <button [disabled]="img.length <2 || title.length<2 || genre.length<2 || duration.length<5 || rating==2|| synopsis.length<10"
+        (click)="uploadMovie()" ion-button>
+      Subir 
+    </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-input block [(ngModel)]="title" class="" type="text" placeholder="Título"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Género</ion-label>
+      <ion-select block [(ngModel)]="genre" multiple="true">
+        <ion-option *ngFor="let genre2 of genres">{{genre2}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input block [(ngModel)]="duration" class="" type="text" placeholder="Duración"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea block [(ngModel)]="synopsis" class="" style="height: 20vh" type="textarea" placeholder="Sinopsis"></ion-textarea>
+    </ion-item>
+    <ion-item text-center>
+      <rating [(ngModel)]="rating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+        nullable="false"></rating>
+    </ion-item>
+
+    <ion-item *ngIf="!isImageSelected"  text-center>
+      Imagen: no seleccionada
+    </ion-item>
+    <ion-item *ngIf="isImageSelected"  text-center>
+        Imagen
+      </ion-item>
+  </ion-list>
+
+
+
+
+  <ion-fab bottom right>
+    <button (click)="pickImage()" ion-fab>
+        <ion-icon name="image"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <img style="max-width:500px" [src]="imagePreview" *ngIf="imagePreview">
+
+</ion-content>
