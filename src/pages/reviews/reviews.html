@@ -1,11 +1,33 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <ion-title>
-        Reseñas
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    
-  </ion-content>
+  <ion-navbar color="primary">
+    <ion-title>
+      Reseñas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item>
+
+      <ion-avatar item-left>
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+
+      <h2>Eminem</h2>
+      <p>Me encantó esta película que hice.</p>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-row  align-items-center>
+        <ion-col col-10><ion-textarea placeholder="Escribir reseña..."></ion-textarea></ion-col>
+        <ion-col col-1>
+            <button clear ion-button><ion-icon name="send"></ion-icon></button>
+        </ion-col>  
+      </ion-row>
+      
+      
+  </ion-footer>

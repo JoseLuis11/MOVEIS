@@ -9,5 +9,4 @@ export interface File{
     synopsis:string;
     reviews : Review;
     imageUrl:string;
-    
 }

@@ -13,10 +13,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from "../config/firebase.config";
 
 //pages
-import { HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage } from '../pages/index.pages';
+import { HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage, SynopsisPage } from '../pages/index.pages';
 
 //services
-import {UploadImageService} from '../providers/index.providers'
+import {UploadImageService, LoginService, UserService} from '../providers/index.providers'
 
 //plugins
 import { Camera } from '@ionic-native/camera';
@@ -25,7 +25,7 @@ import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
-    MyApp, HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage
+    MyApp, HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage, SynopsisPage
   ],
   imports: [
     BrowserModule,
@@ -37,14 +37,16 @@ import { Camera } from '@ionic-native/camera';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp, HomePage, RegisterPage, LoginPage, AddMoviePage, ReviewsPage
+    MyApp, HomePage, RegisterPage, LoginPage, AddMoviePage, ReviewsPage, SynopsisPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    UploadImageService
+    UploadImageService,
+    LoginService,
+    UserService
   ]
 })
 export class AppModule { }

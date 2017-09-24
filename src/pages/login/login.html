@@ -12,7 +12,8 @@
       <ion-input [(ngModel)]="pass" class="inputForm" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
 
-    <button [navPush]="homePage" (click)="seeComponents()" text-center text-capitalize block ion-button class="buttonForm"> Iniciar Sesión </button>
+    <button [disabled]="!email.includes('@') || !email.includes('.') || email.length<4 || pass.length<4" 
+            (keyup.enter)="authentication()" (click)="authentication()" text-center text-capitalize block ion-button class="buttonForm"> Iniciar Sesión </button>
 
   </ion-list>
 

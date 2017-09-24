@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu id='menu' [content]="content">
     <ion-header>
         <ion-toolbar color="primary">
             <ion-title>Menú</ion-title>
@@ -7,11 +7,8 @@
     <ion-content >
         <img id="logo" src="assets/img/logo.svg">
         <ion-list id="menu-list">
-            <button ion-item (click)="openPage(loginPage)">
-          Iniciar Sesión
-        </button>
-            <button ion-item (click)="openPage(registerPage)">
-          Crear Cuenta
+            <button ion-item (click)="logOut()">
+          Cerrar Sesión
         </button>
 
         </ion-list>

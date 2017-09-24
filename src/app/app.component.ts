@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { LoginService } from './../providers/login/login.service';
+import { Component, OnInit } from '@angular/core';
+import { Platform, MenuController, App, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,25 +10,48 @@ import { LoginPage, RegisterPage } from '../pages/index.pages'
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
 
   loginPage = LoginPage;
   registerPage = RegisterPage;
 
   rootPage: any = LoginPage;
+  isLogged = false;
 
-  constructor( private menuController: MenuController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(private menuController: MenuController, platform: Platform, statusBar: StatusBar,
+    splashScreen: SplashScreen, private loginService: LoginService, private app: App, private toastCtrl: ToastController) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      
       statusBar.styleDefault();
       splashScreen.hide();
+      this.menuController.enable(false);
     });
   }
 
+  ngOnInit() {
+    this.isLogged = this.loginService.isLogged();
+    console.log(this.isLogged);
+  }
+
   openPage(page: any) {
-    this.rootPage = page;
     this.menuController.close();
+    this.rootPage = page;
+  }
+
+  logOut() {
+    this.loginService.changeState();
+    this.menuController.close();
+    this.app.getRootNav().setRoot(LoginPage);
+    this.showToast("Sesión cerrada.")
+    this.menuController.enable(false);
+  }
+
+  private showToast(text: string) {
+    this.toastCtrl.create({
+      message: text,
+      duration: 2500
+
+    }).present();
   }
 }
 

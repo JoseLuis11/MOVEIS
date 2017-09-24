@@ -6,29 +6,29 @@
     
         
         <ion-item>
-            <ion-input type="text" placeholder="Nombre" ></ion-input>
+            <ion-input [(ngModel)]="user.name" type="text" placeholder="Nombre" ></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text" placeholder="Apellidos" ></ion-input>
+            <ion-input [(ngModel)]="user.lastName" type="text" placeholder="Apellidos" ></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="email" placeholder="Correo Electrónico"></ion-input>
+            <ion-input [(ngModel)]="user.email" type="email" placeholder="Correo Electrónico"></ion-input>
         </ion-item>
 
 
         <ion-item>
-            <ion-input type="password" placeholder="Contraseña"></ion-input>
+            <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>
         </ion-item>
 
-        <button block text-center text-capitalize ion-button  class="buttonForm"> Registrar </button>
+        <button block text-center text-capitalize ion-button  (click)="addUser()" class="buttonForm"> Registrar </button>
 
     </ion-list>
 </ion-content>
 
 <ion-footer>
         <ion-toolbar>
-          <p text-center>¿Ya estás registrado? <a [navPush]="loginPage" >Inicia Sesión. </a></p>
+          <p text-center>¿Ya estás registrado? <a navPop >Inicia Sesión. </a></p>
         </ion-toolbar>
       </ion-footer>

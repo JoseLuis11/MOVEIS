@@ -8,7 +8,7 @@
       Película
     </ion-title>
 
-    <ion-buttons end> <button [disabled]="img.length <2 || title.length<2 || genre.length<2 || duration.length<5 || rating==2|| synopsis.length<10"
+    <ion-buttons end> <button [disabled]="img.length <2 || title.length<2 || genre.length<2 || duration.length<3 ||  synopsis.length<5"
         (click)="uploadMovie()" ion-button>
       Subir 
     </button>

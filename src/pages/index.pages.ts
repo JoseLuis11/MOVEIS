@@ -1,4 +1,4 @@
-
+export { SynopsisPage } from './synopsis/synopsis';
 export { HomePage } from '../pages/home/home';
 export { RegisterPage } from '../pages/register/register';
 export { AddMoviePage } from '../pages/add-movie/add-movie';

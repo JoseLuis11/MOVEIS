@@ -1,15 +1,16 @@
-import { genres } from './../../providers/genres/genres';
+import { GenresService } from './../../providers/genres/genres';
 import { UploadImageService } from './../../providers/upload-image/upload-image';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewController, Platform, AlertController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
 @Component({
   selector: 'page-add-movie',
-  templateUrl: 'add-movie.html'
+  templateUrl: 'add-movie.html',
+  providers: [GenresService]
 })
-export class AddMoviePage {
+export class AddMoviePage implements OnInit {
 
   imagePreview: string = null;
   title: string;
@@ -18,12 +19,17 @@ export class AddMoviePage {
   rating: number=0;
   synopsis: string;
   img: string = "";
-  genres= genres;
+  genres;
   isImageSelected= false;
   
 
-  constructor(private ViewCtrl: ViewController, private uploadImageService: UploadImageService, private camera: Camera, private platform: Platform, private alerCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(private ViewCtrl: ViewController, private uploadImageService: UploadImageService, private camera: Camera,
+     private platform: Platform, private alerCtrl: AlertController, private loadingCtrl: LoadingController, private genresService: GenresService) {
     console.log(this.genre);
+  }
+
+  ngOnInit(){
+    this.genres = this.genresService.getGenres();
   }
 
   uploadMovie() {

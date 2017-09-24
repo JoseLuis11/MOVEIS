@@ -10,7 +10,7 @@ import { ToastController } from 'ionic-angular';
 export class UploadImageService {
 
   private ALBUM_IMAGES: string = "img";
-  private POSTS: string = "movies";
+  private MOVIES: string = "movies";
 
   imagenes: any[] = [];
 
@@ -39,7 +39,7 @@ export class UploadImageService {
 
       ()=>{
         let url = uploadTask.snapshot.downloadURL;
-        this.showToast("Imagen cargada exitosamente");
+        this.showToast("Película cargada exitosamente");
         this.createMovie(file.title, file.genre, file.duration, file.rating, file.synopsis, file.reviews, url);
         resolve();
       }
@@ -62,7 +62,7 @@ export class UploadImageService {
       imageUrl: url,
     };
 
-    let $key = this.af.database.ref(`/${this.POSTS}`).push(movie).key;
+    let $key = this.af.database.ref(`/${this.MOVIES}`).push(movie).key;
 
     movie.$key = $key;
 

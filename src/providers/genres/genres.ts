@@ -1,6 +1,18 @@
-export const genres: string[] = 
+import { Injectable } from '@angular/core';
 
-["Acción", "Animación", "Aventura", "Sci-Fi", "Comedia", "Documental", "Fantasía", "Romance", "Terror"];
+
+@Injectable() export class GenresService{
+
+    private genres: string[] = 
+    
+    ["Acción", "Animación", "Aventura", "Sci-Fi", "Comedia", "Documental", "Fantasía", "Romance", "Terror"];
+
+    getGenres(){
+        return this.genres;
+    }
+}
+
+
 
 
 
