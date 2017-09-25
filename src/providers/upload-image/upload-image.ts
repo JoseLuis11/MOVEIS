@@ -25,24 +25,24 @@ export class UploadImageService {
       let storageRef = firebase.storage().ref();
       let fileName = new Date().valueOf();
 
-      let uploadTask: firebase.storage.UploadTask = storageRef.child(`${this.ALBUM_IMAGES}/${fileName}`).putString(file.imageUrl,'base64',{contentType: 'image/jpeg'});
-      
+      let uploadTask: firebase.storage.UploadTask = storageRef.child(`${this.ALBUM_IMAGES}/${fileName}`).putString(file.imageUrl, 'base64', { contentType: 'image/jpeg' });
+
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      ()=>{
+        () => {
 
-      },
+        },
 
-      (error)=>{
-        this.showToast("Error al cargar "+JSON.stringify(error));
-        
-      },
+        (error) => {
+          this.showToast("Error al cargar " + JSON.stringify(error));
 
-      ()=>{
-        let url = uploadTask.snapshot.downloadURL;
-        this.showToast("Película cargada exitosamente");
-        this.createMovie(file.title, file.genre, file.duration, file.rating, file.synopsis, file.reviews, url);
-        resolve();
-      }
+        },
+
+        () => {
+          let url = uploadTask.snapshot.downloadURL;
+          this.showToast("Película cargada exitosamente");
+          this.createMovie(file.title, file.genre, file.duration, file.rating, file.synopsis, file.date, url);
+          resolve();
+        }
       )
 
     });
@@ -51,14 +51,14 @@ export class UploadImageService {
 
   }
 
-  private createMovie(title:string, genre:string, duration:string, rating:number, synopsis:string, reviews: Review, url:string){
-    let movie:File = {
+  private createMovie(title: string, genre: string, duration: string, rating: number, synopsis: string, date: string, url: string) {
+    let movie: File = {
       title: title,
       genre: genre,
       duration: duration,
       rating: rating,
-      synopsis:synopsis,
-      reviews: reviews,
+      synopsis: synopsis,
+      date: date,
       imageUrl: url,
     };
 

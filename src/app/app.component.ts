@@ -1,5 +1,6 @@
+import { Profile } from './../interfaces/profile.interface';
 import { LoginService } from './../providers/login/login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Platform, MenuController, App, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +19,8 @@ export class MyApp implements OnInit {
   rootPage: any = LoginPage;
   isLogged = false;
 
+  
+
   constructor(private menuController: MenuController, platform: Platform, statusBar: StatusBar,
     splashScreen: SplashScreen, private loginService: LoginService, private app: App, private toastCtrl: ToastController) {
     platform.ready().then(() => {
@@ -29,8 +32,7 @@ export class MyApp implements OnInit {
   }
 
   ngOnInit() {
-    this.isLogged = this.loginService.isLogged();
-    console.log(this.isLogged);
+    
   }
 
   openPage(page: any) {
@@ -38,13 +40,15 @@ export class MyApp implements OnInit {
     this.rootPage = page;
   }
 
-  logOut() {
-    this.loginService.changeState();
-    this.menuController.close();
+
+  signOut(){
+    this.loginService.signOut();
     this.app.getRootNav().setRoot(LoginPage);
     this.showToast("Sesión cerrada.")
     this.menuController.enable(false);
+    this.menuController.close();
   }
+  
 
   private showToast(text: string) {
     this.toastCtrl.create({

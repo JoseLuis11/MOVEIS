@@ -26,10 +26,12 @@ export class LoginService {
 
     createUserWithEmailAndPassword(userModel: UserModel): Promise<any> {
         return this.angularFireAuth.auth.createUserWithEmailAndPassword(userModel.email, userModel.password);
-        this.angularFireAuth.auth.currentUser.upd
     }
     
-    let $key = this.af.database.ref(`/${this.MOVIES}`).push(movie).key;
+    signOut(): Promise<any> {
+        return this.angularFireAuth.auth.signOut();
+    }
+
 
     private login: boolean = false;
 
@@ -47,24 +49,10 @@ export class LoginService {
     }
 
     c: number = 0;
-    users = this.af.list('/users');
 
 
 
 
-    validate(email: string, password: string) {
-        
-        this.users.
-        while (this.c < this.users.) {
-            if (email == this.users[this.c].email && password == this.users[this.c].password) {
-                this.userService.setCurrentUser(this.users[this.c]);
-                this.c = 0;
-                return true;
-            }
-            this.c++;
-        }
-        this.c = 0;
-        return false;
-    }
+
 
 }

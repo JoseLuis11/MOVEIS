@@ -6,11 +6,11 @@
     
         
         <ion-item>
-            <ion-input [(ngModel)]="user.name" type="text" placeholder="Nombre" ></ion-input>
+            <ion-input [(ngModel)]="profile.firstName" type="text" placeholder="Nombre"></ion-input>
         </ion-item>
-
+        
         <ion-item>
-            <ion-input [(ngModel)]="user.lastName" type="text" placeholder="Apellidos" ></ion-input>
+          <ion-input [(ngModel)]="profile.lastName" type="text" placeholder="Apellidos"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -22,7 +22,9 @@
             <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>
         </ion-item>
 
-        <button block text-center text-capitalize ion-button  (click)="addUser()" class="buttonForm"> Registrar </button>
+        <button block text-center text-capitalize ion-button [disabled]="!user.email.includes('@') || !user.email.includes('.') || user.email.length<4 
+        || user.password.length<6 || profile.firstName.length<0 || profile.lastName.length<0"
+         (click)="register()" (keyup.enter)="register()" class="buttonForm"> Registrar </button>
 
     </ion-list>
 </ion-content>

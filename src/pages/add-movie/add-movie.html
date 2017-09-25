@@ -8,7 +8,7 @@
       Película
     </ion-title>
 
-    <ion-buttons end> <button [disabled]="img.length <2 || title.length<2 || genre.length<2 || duration.length<3 ||  synopsis.length<5"
+    <ion-buttons end> <button [disabled]="img.length <2 || title.length<2 || genre.length<2 || duration.length<3 ||  synopsis.length<5 || date.length<4"
         (click)="uploadMovie()" ion-button>
       Subir 
     </button>
@@ -35,6 +35,10 @@
     <ion-item>
       <ion-textarea id="synopsis" block [(ngModel)]="synopsis" class="" type="textarea" placeholder="Sinopsis"></ion-textarea>
     </ion-item>
+    <ion-item>
+        <ion-label>Fecha de lanzamiento</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
     <ion-item text-center>
       <rating [(ngModel)]="rating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
         nullable="false"></rating>

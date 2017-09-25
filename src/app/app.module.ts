@@ -13,10 +13,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from "../config/firebase.config";
 
 //pages
-import { HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage, SynopsisPage } from '../pages/index.pages';
+import { HomePage, RegisterPage, AddMoviePage, LoginPage, ReviewsPage, SynopsisPage} from '../pages/index.pages';
 
 //services
-import {UploadImageService, LoginService, UserService} from '../providers/index.providers'
+import {UploadImageService, ReviewService ,LoginService, UserService, CollectionService} from '../providers/index.providers'
 
 //plugins
 import { Camera } from '@ionic-native/camera';
@@ -43,6 +43,8 @@ import { Camera } from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     Camera,
+    ReviewService,
+    CollectionService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UploadImageService,
     LoginService,

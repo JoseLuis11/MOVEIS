@@ -18,6 +18,7 @@ export class AddMoviePage implements OnInit {
   duration: string;
   rating: number=0;
   synopsis: string;
+  date:string;
   img: string = "";
   genres;
   isImageSelected= false;
@@ -39,7 +40,7 @@ export class AddMoviePage implements OnInit {
       'duration': this.duration,
       'rating': this.rating,
       'synopsis': this.synopsis,
-      'reviews': { 'user': "man", 'text': "jeje" },
+      'date': this.date,
       'imageUrl': this.img
     }
 

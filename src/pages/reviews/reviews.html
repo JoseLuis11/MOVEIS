@@ -8,14 +8,21 @@
 
 <ion-content padding>
   <ion-list no-lines>
-    <ion-item>
-
-      <ion-avatar item-left>
+    <ion-item *ngFor="let review of reviewsData | async" >
+      
+        
+      
+      <ion-avatar item-start>
         <ion-icon name="person"></ion-icon>
       </ion-avatar>
-
-      <h2>Eminem</h2>
-      <p>Me encantó esta película que hice.</p>
+      <h2>{{review.user}}</h2>
+      
+      <button *ngIf="review.userId==userId"  (click)="showConfirm(review.$key)" ion-button clear item-end>
+          
+        <ion-icon name="trash" item-right></ion-icon>
+      </button>
+      
+      <p>{{review.text}}</p>
 
     </ion-item>
   </ion-list>
@@ -23,9 +30,9 @@
 
 <ion-footer>
     <ion-row  align-items-center>
-        <ion-col col-10><ion-textarea placeholder="Escribir reseña..."></ion-textarea></ion-col>
+        <ion-col col-10><ion-textarea [(ngModel)]="text"  placeholder="Escribir reseña..."></ion-textarea></ion-col>
         <ion-col col-1>
-            <button clear ion-button><ion-icon name="send"></ion-icon></button>
+            <button clear ion-button (click)="uploadReview()"><ion-icon name="send"></ion-icon></button>
         </ion-col>  
       </ion-row>
       
