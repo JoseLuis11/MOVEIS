@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { MyApp } from './app.component';
+import { IonicStorageModule } from '@ionic/storage';
 
 //firebase
 import { AngularFireModule } from 'angularfire2';
@@ -30,6 +31,7 @@ import { Camera } from '@ionic-native/camera';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),    
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

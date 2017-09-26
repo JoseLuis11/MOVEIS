@@ -10,12 +10,13 @@ export class CollectionService {
         
     }
 
-    addToCollection(file:File, userId: string){
-        this.afDatabase.database.ref(`/profile/${userId}/collection`).push(file).then(()=>{
-        this.showToast("Agregada a colección");
-        }).catch(error=>{
-            console.log(error)
-        });
+    addToCollection(movie:any, userId: string){
+        
+        this.afDatabase.database.ref(`/profile/${userId}/collection`).push(movie).then(()=>{
+            this.showToast("Agregada a colección");
+            }).catch(error=>{
+                this.showToast("Algo salió mal añadiendo esta pelicula, intentalo de nuevo.");
+            });
     }
 
     removeFromCollection(movieKey:string, userId: string){

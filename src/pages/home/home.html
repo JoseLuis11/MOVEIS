@@ -28,59 +28,57 @@
   <ion-refresher *ngIf="page=='collection'" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div [ngSwitch]="page">
-    <div *ngSwitchCase="'home'">
+  <div [ngSwitch]="page" style="height:100%">
+    <div [ngClass]="{'hidden': page !== 'home' }">
       <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
       <ion-item>
         <ion-label> Mostrar imagenes</ion-label>
         <ion-toggle (click)="changeToggleState()" color="primary" [(ngModel)]="showImages"> </ion-toggle>
       </ion-item>
-      
+     <ion-list [virtualScroll]="movies.length ? movies : []">
+        <ion-card *virtualItem="let movie">
 
-      <ion-card *ngFor="let movie of movies | async">
-
-        <img *ngIf="showImages" id="cover" [src]="movie.imageUrl">
-
-
-        <ion-card-content>
-          <ion-card-title class="margin-bottom" text-center>
-            {{movie.title}}
-          </ion-card-title>
-
-          <h2 text-left class="margin-bottom">Género: {{movie.genre}}</h2>
-          <h2 text-left class="margin-bottom">Duracion: {{movie.duration}}</h2>
-          <h2 text-left class="margin-bottom">Fecha: {{movie.date | date: 'dd/MM/yyyy'}}</h2>
-
-          <rating [(ngModel)]="movie.rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"
-            starIconName="star" nullable="false"></rating>
-        </ion-card-content>
-        <ion-grid>
-          <ion-row align-items-center>
-            <ion-col>
-              <button (click)="showSynopsis(movie.title,movie.synopsis)" ion-button icon-left clear small>
-                <ion-icon name="information-circle"></ion-icon>
-                <div>Sinopsis</div>
-              </button>
-            </ion-col>
-            <ion-col>
-              <button (click)="showReviews(movie.$key)" ion-button icon-left clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>Reseñas</div>
-              </button>
-            </ion-col>
-            <ion-col text-center>
-              <button ion-button large clear (click)="addToCollection(this.movie)">
-                  <ion-icon large name="{{collectionIcon}}"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
+          <img *ngIf="showImages" id="cover" [src]="movie.imageUrl">
 
 
+          <ion-card-content>
+            <ion-card-title class="margin-bottom" text-center>
+              {{movie.title}}
+            </ion-card-title>
+
+            <h2 text-left class="margin-bottom">Género: {{movie.genre}}</h2>
+            <h2 text-left class="margin-bottom">Duracion: {{movie.duration}}</h2>
+            <h2 text-left class="margin-bottom">Fecha: {{movie.date | date: 'dd/MM/yyyy'}}</h2>
+
+            <rating [(ngModel)]="movie.rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"
+              starIconName="star" nullable="false"></rating>
+          </ion-card-content>
+          <ion-grid>
+            <ion-row align-items-center>
+              <ion-col>
+                <button (click)="showSynopsis(movie.title,movie.synopsis)" ion-button icon-left clear small>
+                        <ion-icon name="information-circle"></ion-icon>
+                        <div>Sinopsis</div>
+                      </button>
+              </ion-col>
+              <ion-col>
+                <button (click)="showReviews(movie.k, movie.title)" ion-button icon-left clear small>
+                        <ion-icon name="text"></ion-icon>
+                        <div>Reseñas</div>
+                      </button>
+              </ion-col>
+              <ion-col text-center>
+                <button ion-button large clear (click)="addToCollection(this.movie)">
+                          <ion-icon large name="{{collectionIcon}}"></ion-icon>
+                      </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-list>
     </div>
 
-    <div *ngSwitchCase="'collection'">
+    <div [ngClass]="{'hidden': page !== 'collection' }">
 
       <ion-card *ngFor="let movie of collection">
 
@@ -108,7 +106,7 @@
                           </button>
             </ion-col>
             <ion-col>
-              <button (click)="showReviews(movie.$key)" ion-button icon-left clear small>
+              <button (click)="showReviews(movie.k,movie.title)" ion-button icon-left clear small>
                             <ion-icon name="text"></ion-icon>
                             <div>Reseñas</div>
                           </button>

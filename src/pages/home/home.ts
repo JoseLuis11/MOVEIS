@@ -1,3 +1,4 @@
+import { Review } from './../../interfaces/review.interface';
 import { CollectionService } from './../../providers/collection/collection.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SynopsisPage } from './../synopsis/synopsis';
@@ -14,7 +15,9 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class HomePage {
 
-  movies: FirebaseListObservable<any[]>;
+  moviesRef;
+  movies = [];
+  loadedMovieList;
   collectionIcon = 'ios-bookmark-outline';
 
   collectionLenght = 0;
@@ -27,10 +30,60 @@ export class HomePage {
   constructor(private af: AngularFireDatabase, private navParams: NavParams, public navCtrl: NavController,
     private modalController: ModalController, private menuCtrl: MenuController, private afAuth: AngularFireAuth,
     private afDatabase: AngularFireDatabase, private collectionService: CollectionService, private alertCtrl: AlertController) {
-    this.movies = af.list('/movies');
+    //cambios a partir de aqui
+    this.moviesRef = af.database.ref('/movies');
+
+
+    this.moviesRef.on('value', movieList => {
+      let reviews:Review;
+      let files = [];
+      movieList.forEach(movie => {
+        movie.val().key = movie.key;
+        if(movie.val().reviews==null){
+          reviews = {userId:"null",user:"null",text:"null"}
+        }else{
+          reviews = movie.val().reviews;
+        }
+        files.push({ title: movie.val().title, date: movie.val().date, genre: movie.val().genre, duration:movie.val().duration, rating:movie.val().rating, synopsis:movie.val().synopsis, imageUrl:movie.val().imageUrl,k:movie.key ,reviews:reviews});
+        console.log(files);
+        return false;
+      });
+
+      this.movies = files;
+      this.loadedMovieList = files;
+    });
     this.showImages = true;
   }
 
+  initializeMovies() {
+    this.movies = this.loadedMovieList;
+  }
+
+  getItems(ev) {
+    // Reset items back to all of the items
+
+    this.initializeMovies();
+    // set val to the value of the ev target
+    var val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (!val) {
+      return;
+    }
+
+    this.movies = this.movies.filter((v) => {
+      if (v.title && val) {
+        if (v.title.toLowerCase().indexOf(val.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+
+    console.log(val, this.movies.length);
+  }
+
+  //hasta aqui
   ngOnInit() {
     this.loadCollection();
   }
@@ -49,8 +102,8 @@ export class HomePage {
     this.navCtrl.push(this.synopsisPage, { title, synopsis })
   }
 
-  showReviews($key: string) {
-    this.navCtrl.push(this.reviewsPage, { $key })
+  showReviews($key: string, title: string) {
+    this.navCtrl.push(this.reviewsPage, { $key, title })
     console.log($key);
   }
 
@@ -88,8 +141,8 @@ export class HomePage {
     }, 2000);
   }
 
-  addToCollection(file: File) {
-    this.collectionService.addToCollection(file, this.userId);
+  addToCollection(movie:any) {
+    this.collectionService.addToCollection(movie, this.userId);
   }
 
   removeFromCollection(movieKey: string) {
@@ -119,23 +172,13 @@ export class HomePage {
     confirm.present();
   }
 
-  /*TODO: getItems(ev) {
-     // Reset items back to all of the items
-     
- 
-     // set val to the value of the ev target
-     var val = ev.target.value;
-    
-     // if the value is an empty string don't filter the items
-     if(!val){
-       return;
-     }
- 
-     this.movies = this.movies.f
-     if (val && val.trim() != '') {
-       this.items = this.items.filter((item) => {
-         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-       })
-     }
-   }*/
+  switchSegment(){
+    if(this.page=="home"){
+      this.page="collection";
+    }else{
+      this.page="home";
+    }
+  }
+
+
 }

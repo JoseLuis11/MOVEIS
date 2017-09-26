@@ -16,6 +16,7 @@ export class ReviewsPage {
 
   reviewsData: FirebaseListObservable<any[]>;
   movieKey: string;
+  movieTitle:string;
   public profileData: FirebaseListObservable<any>;
   text:string;
   review = {} as Review;
@@ -24,6 +25,7 @@ export class ReviewsPage {
     private afAuth: AngularFireAuth, private reviewService: ReviewService, private alertCtrl:AlertController) {
 
     this.movieKey = navParams.get('$key')
+    this.movieTitle = navParams.get('title');
     this.reviewsData = this.afDatabase.list(`movies/${this.movieKey}/reviews`);
     this.text = '';
     console.log(this.movieKey);

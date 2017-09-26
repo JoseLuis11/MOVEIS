@@ -12,7 +12,7 @@
       <ion-input [(ngModel)]="user.password" class="inputForm" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
 
-    <button [disabled]="!user.email.includes('@') || !user.email.includes('.') || user.email.length<4 || user.password.length<4" 
+    <button [disabled]="!user.email.includes('@') || !user.email.includes('.') || user.email.length<4 || user.password.length<6" 
             (keyup.enter)="login2()" (click)="login2()" text-center text-capitalize block ion-button class="buttonForm"> Iniciar Sesión </button>
 
   </ion-list>
